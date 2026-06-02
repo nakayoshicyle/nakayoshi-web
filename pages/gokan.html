@@ -6,370 +6,37 @@
     <title>
       後関杯富士スバルラインタイムトライアル 沿革 - なかよしさいくる
     </title>
-    <style>
-      :root {
-        --bg-color: #f5f7f8;
-        --main-navy: #0e3552;
-        --text-dark: #222222;
-        --text-muted: #666666;
-        --card-bg: #ffffff;
-        --font-base:
-          "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", sans-serif;
-      }
-
-      * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-      }
-
-      body {
-        font-family: var(--font-base);
-        background-color: var(--bg-color);
-        color: var(--text-dark);
-        line-height: 1.8; /* 長文が読みやすいように少し広めの行間に調整 */
-        overflow-x: hidden;
-      }
-
-      /* 共通コンテナ（スマホでの余白を100%保証する安全装置） */
-      .container {
-        max-width: 1100px;
-        margin: 0 auto;
-        padding: 0 24px;
-        width: 100%;
-      }
-
-      /* ヘッダー */
-      header {
-        background-color: var(--bg-color);
-        padding: 20px 0;
-      }
-      .header-inner {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-      .logo {
-        color: var(--main-navy);
-        font-size: 1.6rem;
-        font-weight: 800;
-        text-decoration: none;
-      }
-      .nav-links {
-        display: flex;
-        align-items: center;
-        gap: 24px;
-      }
-      .nav-links a {
-        text-decoration: none;
-        color: var(--main-navy);
-        font-weight: 600;
-        font-size: 0.9rem;
-      }
-      .nav-links .btn {
-        color: #ffffff !important;
-      }
-
-      /* 共通カプセル型ボタン */
-      .btn {
-        display: inline-block;
-        background-color: var(--main-navy);
-        color: #ffffff;
-        text-decoration: none;
-        padding: 12px 36px;
-        border-radius: 50px;
-        font-weight: bold;
-        font-size: 0.95rem;
-        transition: all 0.3s ease;
-        text-align: center;
-        max-width: 100%;
-      }
-      .btn:hover {
-        opacity: 0.9;
-      }
-
-      /* メインコンテンツ枠 */
-      .main-content {
-        padding: 40px 0 80px 0;
-      }
-
-      /* ページメインタイトル */
-      .page-title {
-        color: var(--main-navy);
-        font-size: 2.2rem;
-        font-weight: 700;
-        margin-bottom: 60px;
-        letter-spacing: 0.05em;
-      }
-
-      /* 各セクションの設定 */
-      .info-section {
-        margin-bottom: 60px;
-      }
-
-      .section-h2 {
-        color: var(--main-navy);
-        font-size: 1.8rem;
-        font-weight: 700;
-        margin-bottom: 24px;
-      }
-
-      /* 本文段落スタイル（白い角丸ボックスに変更） */
-    .text-block {
-      max-width: 950px;
-      margin: 0 auto;
-      background-color: var(--card-bg); /* 背景を白（#ffffff）にする */
-      border-radius: 30px;              /* お知らせと同じ綺麗な角丸 */
-      padding: 40px 50px;               /* ボックスの内側に程よい余白を作る */
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02); /* ほんの少しだけ上品な影をつける */
-    }
-    .text-block p {
-      margin-bottom: 24px;
-      font-size: 1rem;
-      text-align: justify;
-      word-break: break-all;
-      padding-left: 0; /* ボックス自体に余白を作ったので、文字単体のインデントはリセットして美しく整えます */
-    }
-    .text-block p:last-child {
-      margin-bottom: 0; /* 一番最後の段落の下マージンを消して上下のバランスを均等に */
-    }
-
-    /* 記事内画像エリア（白いボックスの中に綺麗に収まるように微調整） */
-    .content-with-img {
-      display: flex;
-      gap: 30px;
-      align-items: flex-start;
-      margin-bottom: 24px;
-      background-color: var(--card-bg);
-    }
-
-      /* 記事内画像エリア（横並びレイアウト用） */
-      .content-with-img {
-        display: flex;
-        gap: 30px;
-        align-items: flex-start;
-        margin-bottom: 24px;
-      }
-      .content-img-box {
-        flex: 0 0 360px; /* 画像の標準幅 */
-        max-width: 100%;
-        background: #ffffff;
-        padding: 10px;
-        border: 1px solid #e0e0e0;
-      }
-      .content-img-box img {
-        width: 100%;
-        height: auto;
-        display: block;
-      }
-
-      /* お問い合わせエリア */
-      .contact-box {
-        display: flex;
-        justify-content: space-between;
-        padding-top: 40px;
-        border-top: 1px solid #dddddd;
-        margin-bottom: 40px;
-        gap: 40px;
-        margin-top: 80px;
-      }
-      .contact-box h3 {
-        color: var(--main-navy);
-        font-size: 1.8rem;
-        margin-bottom: 15px;
-      }
-      .contact-desc {
-        color: var(--text-muted);
-        font-size: 0.95rem;
-      }
-      .sns-info {
-        list-style: none;
-        font-size: 0.9rem;
-        font-weight: bold;
-      }
-      .sns-info li {
-        margin-bottom: 8px;
-        color: var(--main-navy);
-      }
-      .sns-info a {
-        color: var(--main-navy);
-        text-decoration: none;
-        transition: color 0.2s ease;
-      }
-      .sns-info a:hover {
-        text-decoration: underline;
-      }
-
-      /* 最下部ネイビーバー */
-      .bottom-bar {
-        background-color: var(--main-navy);
-        height: 60px;
-        width: 100%;
-      }
-
-      /* 📱 スマホ・レスポンシブ対応 */
-      @media screen and (max-width: 768px) {
-        .container {
-          padding: 0 16px !important; /* スマホでも絶対に余白をキープ */
-        }
-        .main-content {
-          padding: 30px 0 60px 0 !important;
-        }
-        .page-title {
-          font-size: 1.6rem !important;
-          margin-bottom: 40px !important;
-        }
-        .section-h2 {
-          font-size: 1.4rem !important;
-          margin-bottom: 16px !important;
-        }
-        .text-block p {
-          padding-left: 0 !important; /* スマホでは画面を広く使うためインデントを解除 */
-          font-size: 0.95rem !important;
-        }
-
-        /* 画像とテキストの横並びを縦並びに切り替え */
-        .content-with-img {
-          flex-direction: column-reverse !important;
-          gap: 20px !important;
-        }
-        .content-img-box {
-          flex: none !important;
-          width: 100% !important;
-          margin: 0 auto;
-        }
-
-        .header-inner,
-        .contact-box {
-          flex-direction: column !important;
-          gap: 24px !important;
-          align-items: stretch !important;
-        }
-        .header-inner {
-          text-align: center;
-        }
-        .nav-links {
-          flex-wrap: wrap !important;
-          justify-content: center !important;
-          gap: 12px 16px !important;
-        }
-        .nav-links a {
-          font-size: 0.85rem !important;
-        }
-        .nav-links .btn {
-          width: 100% !important;
-          padding: 10px 20px !important;
-        }
-      }
-      /* --- ハンバーガーメニュー用の基本スタイル --- */
-    .menu-toggle {
-      display: none; /* パソコン表示ではボタンを隠す */
-      background: none;
-      border: none;
-      cursor: pointer;
-      flex-direction: column;
-      gap: 6px;
-      z-index: 100;
-      padding: 10px;
-    }
-    .menu-toggle span {
-      display: block;
-      width: 28px;
-      height: 3px;
-      background-color: var(--main-navy);
-      border-radius: 2px;
-      transition: all 0.3s ease;
-    }
-
-    /* ボタンがクリックされてメニューが開いている時の三本線の変形（X印になる） */
-    .menu-toggle.active span:nth-child(1) {
-      transform: translateY(9px) rotate(45deg);
-    }
-    .menu-toggle.active span:nth-child(2) {
-      opacity: 0;
-    }
-    .menu-toggle.active span:nth-child(3) {
-      transform: translateY(-9px) rotate(-45deg);
-    }
-
-    /* 📱 タブレット・スマホ（1024px以下）の時のメニュー挙動 */
-    @media screen and (max-width: 1024px) {
-      /* 🌟 ここにこれを新しく追加します！ */
-      .header-inner {
-        flex-direction: row !important;
-        justify-content: space-between !important;
-        align-items: center !important;
-      }
-
-      .menu-toggle {
-        display: flex; /* 👈ここからは元々あったコードです */
-      }
-
-      .nav-links {
-        display: none; 
-        position: absolute;
-        top: 80px; 
-        left: 0;
-        width: 100%;
-        background-color: var(--bg-color);
-        flex-direction: column !important;
-        gap: 0 !important;
-        padding: 20px 0;
-        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.05);
-        z-index: 99;
-      }
-      /* JavaScriptで「active」クラスがついたらメニューを展開 */
-      .nav-links.active {
-        display: flex !important;
-      }
-
-      .nav-links a {
-        width: 100%;
-        text-align: center;
-        padding: 16px 0;
-        border-bottom: 1px solid rgba(14, 53, 82, 0.1);
-        font-size: 1rem !important;
-      }
-
-      /* ボタン部分の調整 */
-      .nav-links .btn {
-        width: 80% !important;
-        margin: 15px auto 0 auto !important;
-        padding: 12px 0 !important;
-        border-bottom: none !important;
-      }
-    }
-    </style>
+    <link rel="stylesheet" href="../assets/css/pages-index.css" />
   </head>
   <body>
     <!-- ヘッダーエリア -->
     <!-- ヘッダーエリア -->
-  <header>
-    <div class="container header-inner">
-      <a href="index.html" class="logo">なかよしさいくる</a>
-      
-      <!-- ハンバーガーメニューの三本線ボタン -->
-      <button class="menu-toggle" id="menuToggle" aria-label="メニューを開く">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
+    <header>
+      <div class="container header-inner">
+        <a href="index.html" class="logo">なかよしさいくる</a>
 
-      <!-- ナビゲーションリンク -->
-      <nav class="nav-links" id="navLinks">
-        <a href="index.html#notice">ホーム</a>
-        <a href="index.html#activity">活動内容</a>
-        <a href="index.html#bicycles">自転車について</a>
-        <a href="kaihou.html">会報</a>
-        <a href="index.html#qa">Q&A</a>
-        <a href="index.html#contact" class="btn">入会・お問い合わせ</a>
-      </nav>
-    </div>
-  </header>
+        <!-- ハンバーガーメニューの三本線ボタン -->
+        <button class="menu-toggle" id="menuToggle" aria-label="メニューを開く">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <!-- ナビゲーションリンク -->
+        <nav class="nav-links" id="navLinks">
+          <a href="index.html#notice">ホーム</a>
+          <a href="index.html#activity">活動内容</a>
+          <a href="index.html#bicycles">自転車について</a>
+          <a href="kaihou.html">会報</a>
+          <a href="index.html#qa">Q&A</a>
+          <a href="index.html#contact" class="btn">入会・お問い合わせ</a>
+        </nav>
+      </div>
+    </header>
 
     <!-- メインコンテンツエリア -->
     <div class="container main-content">
-      <h1 class="page-title">後関杯富士スバルライン<br>タイムトライアル 沿革</br></h1>
+      <h1 class="page-title">後関杯富士スバルライン タイムトライアル 沿革</h1>
 
       <!-- 後関杯セクション -->
       <section class="info-section">
@@ -425,9 +92,12 @@
                 最初は、路肩にちょっと雪がある程度で、路面も乾いており走りやすい道であった。天気も薄日が大さしていた。しかし、高度をかせいでいくうちに、雪が路面を覆うようになり、ゲートから10kmほどの地点から、2kmほどは押さざるを得ない状況になっていた。とはいえ、車がよく通るので、雪は固められており、それほどひどい状況ではなかった。全区間を通じ、この付近が一番ひどく、ここ以外はほとんど乗ることができた。このあたりで雪がぱらついた。ここまで終始後関君は遅れ気味であった。
               </p>
             </div>
-            
+
             <div class="content-img-box">
-              <img src="gokansan1.gif" alt="高野山・龍神温泉周辺地図（図1）" />
+              <img
+                src="../assets/images/gokansan1.gif"
+                alt="高野山・龍神温泉周辺地図（図1）"
+              />
             </div>
           </div>
 
@@ -450,7 +120,10 @@
               </p>
             </div>
             <div class="content-img-box">
-              <img src="gokansan2.gif" alt="事故現場の状況図" />
+              <img
+                src="../assets/images/gokansan2.gif"
+                alt="事故現場の状況図"
+              />
             </div>
           </div>
 
@@ -484,46 +157,47 @@
       </section>
 
       <!-- お問い合わせエリア -->
-      <div class="contact-box">
-        <div>
-          <h3>お問い合せ</h3>
-          <p class="contact-desc">
-            入会や各種お問い合わせについては<br />公式SNSのDMにてご連絡ください。
-          </p>
+      <section id="contact">
+        <div class="container contact-split">
+          <div>
+            <h2 class="section-title">お問い合わせ</h2>
+            <p>
+              入会や各種お問い合わせについては<br />公式SNSのDMにてご連絡ください。
+            </p>
+          </div>
+          <ul class="sns-list">
+            <li><strong>Twitter:</strong> @nakayoshicycle</li>
+            <li><strong>Email:</strong> ncyc-info@nakayoshi.com</li>
+            <li><strong>Instagram:</strong> nakayoshi_cycle</li>
+          </ul>
         </div>
-        <ul class="sns-info">
-          <li>Twitter: <a href="#">@nakayoshicycle</a></li>
-          <li>
-            Email: <a href="mailto:support@solus.com">support@solus.com</a>
-          </li>
-          <li>Instagram: <a href="#">teamnc_utokyo</a></li>
-        </ul>
-      </div>
+      </section>
     </div>
-
-    <!-- 最下部ネイビーバー -->
-    <div class="bottom-bar"></div>
+    <!-- フッター（他ページと統一） -->
+    <footer>
+      <p>© なかよしさいくる All Rights Reserved.</p>
+    </footer>
     <!-- ハンバーガーメニュー開閉用のJavaScript -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const menuToggle = document.getElementById('menuToggle');
-      const navLinks = document.getElementById('navLinks');
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const menuToggle = document.getElementById("menuToggle");
+        const navLinks = document.getElementById("navLinks");
 
-      // ボタンをクリックした時の開閉処理
-      menuToggle.addEventListener('click', function() {
-        menuToggle.classList.toggle('active');
-        navLinks.classList.toggle('active');
-      });
+        // ボタンをクリックした時の開閉処理
+        menuToggle.addEventListener("click", function () {
+          menuToggle.classList.toggle("active");
+          navLinks.classList.toggle("active");
+        });
 
-      // メニュー内のリンクをクリックしたら自動でメニューを閉じる（ページ内リンク対策）
-      const links = navLinks.querySelectorAll('a');
-      links.forEach(link => {
-        link.addEventListener('click', function() {
-          menuToggle.classList.remove('active');
-          navLinks.classList.remove('active');
+        // メニュー内のリンクをクリックしたら自動でメニューを閉じる（ページ内リンク対策）
+        const links = navLinks.querySelectorAll("a");
+        links.forEach((link) => {
+          link.addEventListener("click", function () {
+            menuToggle.classList.remove("active");
+            navLinks.classList.remove("active");
+          });
         });
       });
-    });
-  </script>
+    </script>
   </body>
 </html>
