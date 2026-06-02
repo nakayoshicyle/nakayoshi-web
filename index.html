@@ -1,0 +1,792 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>なかよしさいくる</title>
+    <style>
+      /* --- 1. デザインシステム & 全体設定 --- */
+      :root {
+        --bg-color: #f5f7f8; /* 全体背景（オフホワイト） */
+        --main-navy: #0e3552; /* テーマカラー（濃いネイビー） */
+        --text-dark: #222222; /* 本文テキスト */
+        --text-muted: #666666; /* 補足テキスト */
+        --card-bg: #ffffff; /* 白背景カード */
+        --font-base:
+          "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: var(--font-base);
+        background-color: var(--bg-color);
+        color: var(--text-dark);
+        line-height: 1.7;
+      }
+
+      /* コンテナ（コンテンツの最大幅） */
+      .container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      /* 共通セクション余白 */
+      section {
+        padding: 60px 0;
+      }
+
+      /* 共通見出しスタイル */
+      .section-title {
+        color: var(--main-navy);
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 30px;
+      }
+
+      /* 共通カプセル型ボタン */
+      .btn {
+        display: inline-block;
+        background-color: var(--main-navy);
+        color: #ffffff !important; /* 👈 パソコン時もスマホ時も文字を白に固定 */
+        text-decoration: none;
+        padding: 12px 36px;
+        border-radius: 50px;
+        font-weight: bold;
+        font-size: 0.95rem;
+        transition: all 0.3s ease;
+        text-align: center;
+        border: none;
+        cursor: pointer;
+      }
+      .btn:hover {
+        opacity: 0.9;
+        transform: translateY(-2px);
+      }
+
+      /* --- 2. 各セクションのスタイル --- */
+
+      /* ヘッダー */
+      header {
+        background-color: var(--bg-color);
+        padding: 20px 0;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+      .header-inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .logo {
+        color: var(--main-navy);
+        font-size: 1.6rem;
+        font-weight: 800;
+        text-decoration: none;
+      }
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+      }
+      .nav-links a {
+        text-decoration: none;
+        color: var(--main-navy);
+        font-weight: 600;
+        font-size: 0.9rem;
+      }
+      .btn-header {
+        padding: 10px 24px;
+        font-size: 0.85rem;
+      }
+
+      /* ヒーローセクション */
+      .hero {
+        padding-top: 10px;
+      }
+      .hero-banner {
+        background-image:
+          linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+          url("ホーム背景.jpg");
+        background-size: cover;
+        background-position: center;
+        height: 480px;
+        border-radius: 40px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 60px;
+        color: #ffffff;
+      }
+      .hero-title {
+        font-size: 3.5rem;
+        font-weight: 800;
+        margin-bottom: 15px;
+      }
+      .hero-lead {
+        font-size: 1.2rem;
+        margin-bottom: 40px;
+        font-weight: 500;
+        line-height: 1.5;
+      }
+      .hero .btn {
+        align-self: flex-start;
+      }
+
+      /* お知らせ */
+      .notice-box {
+        background-color: var(--card-bg);
+        border-radius: 32px;
+        padding: 40px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+      }
+      .notice-title {
+        color: var(--main-navy);
+        font-size: 1.6rem;
+        font-weight: 700;
+        margin-bottom: 24px;
+      }
+      .notice-list {
+        list-style: none;
+      }
+      .notice-item {
+        display: flex;
+        gap: 40px;
+        padding: 16px 0;
+        border-bottom: 1px solid #eeeeee;
+        font-size: 0.95rem;
+      }
+      .notice-item:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+      .notice-date {
+        color: var(--text-muted);
+        font-weight: 500;
+        min-width: 90px;
+      }
+
+      /* 活動内容 */
+      .activity-split {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        align-items: center;
+      }
+      .activity-text p {
+        margin-bottom: 30px;
+        color: var(--text-dark);
+      }
+      .activity-image img {
+        width: 100%;
+        height: 380px;
+        object-fit: cover;
+        border-radius: 40px;
+      }
+
+      /* 自転車について */
+      .bicycles {
+        text-align: center;
+      }
+      .bicycles-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+        margin-top: 40px;
+      }
+      .bicycle-card {
+        background-color: var(--card-bg);
+        border-radius: 32px;
+        padding: 40px 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 320px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+      }
+      .bicycle-card h3 {
+        color: var(--main-navy);
+        font-size: 1.3rem;
+        margin-bottom: 15px;
+      }
+      .bicycle-card p {
+        font-size: 0.9rem;
+        color: var(--text-muted);
+        margin-bottom: 30px;
+      }
+
+      /* 会報・記事 */
+      .newsletter-bar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 40px;
+      }
+      .newsletter-text {
+        max-width: 600px;
+      }
+
+      /* 写真 */
+      .photos-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+      .photos-grid img {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+        border-radius: 12px;
+      }
+
+      /* Q&A */
+      .qa-split {
+        display: grid;
+        grid-template-columns: 4fr 6fr;
+        gap: 60px;
+      }
+      .qa-left p {
+        margin-bottom: 30px;
+      }
+      .qa-left img {
+        width: 100%;
+        height: 240px;
+        object-fit: cover;
+        border-radius: 32px;
+      }
+      .qa-list {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+      details {
+        background-color: var(--card-bg);
+        border-radius: 16px;
+        padding: 20px 30px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+      }
+      summary {
+        list-style: none;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-weight: bold;
+        color: var(--main-navy);
+        cursor: pointer;
+        font-size: 0.95rem;
+      }
+      summary::-webkit-details-marker {
+        display: none;
+      }
+      summary::after {
+        content: "＋";
+        font-size: 1.1rem;
+        color: var(--main-navy);
+      }
+      details[open] summary::after {
+        content: "－";
+      }
+      .qa-answer {
+        margin-top: 15px;
+        padding-top: 15px;
+        border-top: 1px solid #eeeeee;
+        font-size: 0.9rem;
+        color: var(--text-dark);
+      }
+
+      /* お問い合わせ */
+      .contact-split {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        padding-bottom: 40px;
+      }
+      .sns-list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        justify-content: center;
+      }
+      .sns-list li {
+        font-size: 0.95rem;
+        color: var(--text-dark);
+      }
+      .sns-list strong {
+        color: var(--main-navy);
+        display: inline-block;
+        width: 90px;
+      }
+
+      /* フッター */
+      footer {
+        background-color: var(--main-navy);
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #ffffff;
+        font-size: 0.8rem;
+      }
+
+      /* ポップアップ（モーダル）の基本設定 */
+      .modal-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.6);
+        z-index: 1000;
+        justify-content: center;
+        align-items: center;
+      }
+      .modal-content {
+        background-color: #ffffff;
+        padding: 40px;
+        border-radius: 32px;
+        max-width: 600px;
+        width: 90%;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        animation: popupAnimation 0.3s ease;
+      }
+      .modal-content h3 {
+        color: var(--main-navy);
+        font-size: 1.6rem;
+        margin-bottom: 20px;
+        font-weight: bold;
+      }
+      .modal-content p {
+        font-size: 0.95rem;
+        line-height: 1.8;
+        margin-bottom: 30px;
+        color: #222222;
+        text-align: left;
+      }
+      .btn-back {
+        background-color: var(--main-navy);
+        color: #ffffff !important;
+        border: none;
+        padding: 12px 36px;
+        border-radius: 50px;
+        font-weight: bold;
+        cursor: pointer;
+        font-size: 0.9rem;
+        transition: opacity 0.3s;
+      }
+      .modal-img {
+        width: 100%;
+        max-height: 250px;
+        object-fit: cover;
+        border-radius: 16px;
+        margin-bottom: 25px;
+        display: block;
+      }
+      .btn-back:hover {
+        opacity: 0.9;
+      }
+
+      @keyframes popupAnimation {
+        from {
+          opacity: 0;
+          transform: scale(0.95);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      /* 📱 全画面共通：スマホ・タブレット共通レスポンシブ（768px以下でのグリッド調整） */
+      @media (max-width: 768px) {
+        .hero-banner {
+          padding: 30px;
+          height: 360px;
+        }
+        .hero-title {
+          font-size: 2.2rem;
+        }
+        .activity-split,
+        .bicycles-grid,
+        .newsletter-bar,
+        .photos-grid,
+        .qa-split,
+        .contact-split {
+          grid-template-columns: 1fr;
+          gap: 30px;
+        }
+        .newsletter-bar {
+          flex-direction: column;
+          text-align: center;
+        }
+      }
+
+      /* 🍔 ハンバーガーメニュー用の基本スタイル */
+      .menu-toggle {
+        display: none; /* パソコン表示ではボタンを隠す */
+        background: none;
+        border: none;
+        cursor: pointer;
+        flex-direction: column;
+        gap: 6px;
+        z-index: 101;
+        padding: 10px;
+      }
+      .menu-toggle span {
+        display: block;
+        width: 28px;
+        height: 3px;
+        background-color: var(--main-navy);
+        border-radius: 2px;
+        transition: all 0.3s ease;
+      }
+
+      /* 三本線の変形（X印） */
+      .menu-toggle.active span:nth-child(1) {
+        transform: translateY(9px) rotate(45deg);
+      }
+      .menu-toggle.active span:nth-child(2) {
+        opacity: 0;
+      }
+      .menu-toggle.active span:nth-child(3) {
+        transform: translateY(-9px) rotate(-45deg);
+      }
+
+      /* 📱 タブレット・スマホ（1024px以下）の時の完全なメニュー挙動 */
+      @media screen and (max-width: 1024px) {
+        .header-inner {
+          flex-direction: row !important; /* 🌟縦に割れないよう横並びを絶対固定 */
+          justify-content: space-between !important; /* 🌟ロゴとボタンを両端に */
+          align-items: center !important;
+        }
+
+        .menu-toggle {
+          display: flex; /* 三本線を表示 */
+        }
+
+        /* 降りてくるメニューの設定 */
+        .nav-links {
+          display: none;
+          position: absolute;
+          top: 75px;
+          left: 0;
+          width: 100%;
+          background-color: var(--card-bg); /* 白ベースのメニュー板 */
+          flex-direction: column !important;
+          gap: 0 !important;
+          padding: 20px 0;
+          box-shadow: 0 10px 15px rgba(0, 0, 0, 0.05);
+          z-index: 99;
+        }
+
+        .nav-links.active {
+          display: flex !important;
+        }
+
+        .nav-links a {
+          width: 100%;
+          text-align: center;
+          padding: 16px 0;
+          border-bottom: 1px solid rgba(14, 53, 82, 0.08);
+          font-size: 1rem !important;
+          color: var(--main-navy) !important; /* 文字をしっかりネイビーで表示 */
+        }
+
+        /* 🌟「入会・お問い合わせ」ボタンの設定を100%確実に上書き */
+        .nav-links .btn {
+          display: block !important;
+          width: 80% !important;
+          margin: 15px auto 0 auto !important;
+          padding: 12px 0 !important;
+          background-color: var(--main-navy) !important; /* 背景ネイビー */
+          color: #ffffff !important; /* 文字を真っ白に */
+          border-radius: 25px !important;
+          text-align: center !important;
+          text-decoration: none !important;
+          border-bottom: none !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ヘッダーエリア -->
+    <header>
+      <div class="container header-inner">
+        <a href="index.html" class="logo">なかよしさいくる</a>
+
+        <!-- ハンバーガーメニューの三本線ボタン -->
+        <button class="menu-toggle" id="menuToggle" aria-label="メニューを開く">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <!-- ナビゲーションリンク -->
+        <nav class="nav-links" id="navLinks">
+          <a href="index.html#notice">ホーム</a>
+          <a href="index.html#activity">活動内容</a>
+          <a href="index.html#bicycles">自転車について</a>
+          <a href="kaihou.html">会報</a>
+          <a href="index.html#qa">Q&A</a>
+          <a href="index.html#contact" class="btn">入会・お問い合わせ</a>
+        </nav>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="container">
+        <div class="hero-banner">
+          <h1 class="hero-title">なかよしさいくる</h1>
+          <p class="hero-lead">
+            スポーツバイクでゆるくポタリング<br />時間を忘れて旅を楽しむインカレサークル
+          </p>
+          <a href="#contact" class="btn">入会はこちら</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="notice">
+      <div class="container">
+        <div class="notice-box">
+          <h2 class="notice-title">お知らせ</h2>
+          <ul class="notice-list">
+            <li class="notice-item">
+              <span class="notice-date">2026.06.03</span>
+              <span class="notice-text">ネット版記事ページを新設中です</span>
+            </li>
+            <li class="notice-item">
+              <span class="notice-date">2026.06.03</span>
+              <a href="26_05.pdf" target="_blank" class="news-link"
+                >会報をアップロードしました</a
+              >
+            </li>
+            <li class="notice-item">
+              <span class="notice-date">2026.06.03</span>
+              <span class="notice-text">サイトを新しくしました</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="activity">
+      <div class="container activity-split">
+        <div class="activity-text">
+          <h2 class="section-title">活動内容</h2>
+          <p>
+            1973年創設の「なかよしさいくる」は、東京大学を中心とするインカレ自転車旅サークルです。月1回の日帰りサイクリングや長期休暇の遠方合宿に加え、キャンプやレース等を行う自由な個人ラン、月1回の定例会など幅広く活動しています。大学1年からOBまでのメンバーが、各自のスタイルで自転車を楽しんでいます。
+          </p>
+          <a href="kaihou.html" class="btn">詳細はこちらから</a>
+        </div>
+        <div class="activity-image">
+          <img src="集合写真.jpg" alt="活動の様子" />
+        </div>
+      </div>
+    </section>
+
+    <section id="bicycles" class="bicycles">
+      <div class="container">
+        <h2 class="section-title">自転車について</h2>
+
+        <div class="bicycles-grid">
+          <div class="bicycle-card">
+            <h3>ロードバイク</h3>
+            <p>ロードバイクってどんな乗り物？<br />魅力を紹介</p>
+            <button class="btn" onclick="openModal('modal-road')">
+              詳細はこちら
+            </button>
+          </div>
+          <div class="bicycle-card">
+            <h3>輪行</h3>
+            <p>自転車を解体して持ち運ぶ<br />どんなところでも行けちゃう</p>
+            <button class="btn" onclick="openModal('modal-rinko')">
+              詳細はこちら
+            </button>
+          </div>
+          <div class="bicycle-card">
+            <h3>安全走行</h3>
+            <p>安全に走るために心がけていること</p>
+            <button class="btn" onclick="openModal('modal-safety')">
+              詳細はこちら
+            </button>
+          </div>
+        </div>
+
+        <div id="modal-road" class="modal-overlay">
+          <div class="modal-content">
+            <h3>ロードバイク</h3>
+            <p>
+              「ママチャリと何が違うの？」と聞かれますが、乗り心地が全然違います。タイヤが細く、ブレーキやハンドルも独特な形をしています。最初は慣れないかもしれませんが、慣れると驚くほど軽やかに走ります。新歓や普段の定期サイクリングなどでは自転車の貸し出しも行っているので、一度騙されたと思って体験しにきてください。初めての方も大歓迎です。
+            </p>
+            <img src="ロードバイク.jpg" alt="ロードバイク" class="modal-img" />
+            <button class="btn-back" onclick="closeModal('modal-road')">
+              戻る
+            </button>
+          </div>
+        </div>
+
+        <div id="modal-rinko" class="modal-overlay">
+          <div class="modal-content">
+            <h3>輪行</h3>
+            <p>
+              自転車の車輪を外して専用の袋に入れ、持ち運べる状態にすることを輪行と言います。電車やバス、飛行機などの公共交通機関に乗せるために旅の幅がぐんと広がります。なかよしさいくるでは基本的に輪行して集合場所に集まって、現地で輪行解除して走れる状態にします。
+            </p>
+            <img src="輪行加工済み.jpg" alt="ロードバイク" class="modal-img" />
+            <button class="btn-back" onclick="closeModal('modal-rinko')">
+              戻る
+            </button>
+          </div>
+        </div>
+
+        <div id="modal-safety" class="modal-overlay">
+          <div class="modal-content">
+            <h3>安全走行</h3>
+            <p>
+              なかよしさいくるではサークルのランでのヘルメットの着用を義務付けています。また、集団走行時には手信号を用いたコミュニケーションや、ラン後にヒヤリハットの共有などを行い安全走行を心がけています。
+            </p>
+            <img
+              src="https://images.unsplash.com/photo-1485965120184-e220f721d03e?w=500"
+              alt="ロードバイク"
+              class="modal-img"
+            />
+            <button class="btn-back" onclick="closeModal('modal-safety')">
+              戻る
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="newsletter">
+      <div class="container newsletter-bar">
+        <div class="newsletter-text">
+          <h2 class="section-title">会報・記事</h2>
+          <p>
+            なかよしさいくる活動の記録。発行している会報のWEB版です。過去3年間の記事をPDF形式で配布しております。
+          </p>
+        </div>
+        <a href="kaihou.html" class="btn">会報はこちらから</a>
+      </div>
+    </section>
+
+    <section class="photos">
+      <div class="container photos-grid">
+        <img src="10899.jpg" alt="サークル写真1" />
+        <img src="伊豆大島後ろ姿.jpg" alt="サークル写真2" />
+      </div>
+    </section>
+
+    <section id="qa">
+      <div class="container qa-split">
+        <div class="qa-left">
+          <h2 class="section-title">Q & A</h2>
+          <p>
+            よくある質問をまとめました。個別で質問を受け付けているので、各新歓SNSにてお問い合わせください。
+          </p>
+          <img src="10899.jpg" alt="Q&Aイメージ" />
+        </div>
+        <div class="qa-right">
+          <div class="qa-list">
+            <details>
+              <summary>活動頻度はどのくらいですか？</summary>
+              <div class="qa-answer">
+                月に約1回の定期サイクリング（定サイ）がベースとなります。長期休暇には合宿もあります。
+              </div>
+            </details>
+            <details>
+              <summary>いつでも入会できますか？</summary>
+              <div class="qa-answer">
+                はい、新歓期以外でも随時入会を受け付けています！締め切りはありません。いつでもお気軽にお尋ねください。
+              </div>
+            </details>
+            <details>
+              <summary>集合場所までどのようにいけばいいですか？</summary>
+              <div class="qa-answer">
+                基本的に鉄道で「輪行」という手法を使って運搬します。自転車を所定の方法で折りたたみ、専用の袋（貸し出しできます）に入れて運びます。折りたたみ方はやや複雑ですが、最初のうちは先輩が方法をお教えするのでご安心ください。基本的には追加料金なしで鉄道に乗れますが、詳細は各鉄道会社などにお問合せください。
+              </div>
+            </details>
+            <details>
+              <summary>自転車を持っていなくても入会できますか？</summary>
+              <div class="qa-answer">
+                大丈夫です！無料でサークル車の貸し出しを行っています。入会後に先輩に相談しながら購入するメンバーもたくさんいます。
+              </div>
+            </details>
+            <details>
+              <summary>男女比はどのくらいですか？</summary>
+              <div class="qa-answer">
+                年度によって多少前後しますが、2:8で男性が多いです。男女問わず和気あいあいと活動しています。
+              </div>
+            </details>
+            <details>
+              <summary>会費などはどのくらいですか？</summary>
+              <div class="qa-answer">
+                保険代などとして、年間数千円（今年度は4000円）いただいております。詳細な会費については、お問い合わせ時または新歓説明会にてご案内しています。
+              </div>
+            </details>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container contact-split">
+        <div>
+          <h2 class="section-title">お問い合わせ</h2>
+          <p>
+            入会や各種お問い合わせについては<br />公式SNSのDMにてご連絡ください。
+          </p>
+        </div>
+        <ul class="sns-list">
+          <li><strong>Twitter:</strong> @nakayoshicycle</li>
+          <li><strong>Email:</strong> ncyc-info@nakayoshi.com</li>
+          <li><strong>Instagram:</strong> nakayoshi_cycle</li>
+        </ul>
+      </div>
+    </section>
+
+    <footer>
+      <p>© なかよしさいくる All Rights Reserved.</p>
+    </footer>
+
+    <script>
+      // モーダル開閉用
+      function openModal(modalId) {
+        const modal = document.getElementById(modalId);
+        modal.style.display = "flex";
+      }
+      function closeModal(modalId) {
+        const modal = document.getElementById(modalId);
+        modal.style.display = "none";
+      }
+    </script>
+
+    <!-- ハンバーガーメニュー開閉用のJavaScript -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const menuToggle = document.getElementById("menuToggle");
+        const navLinks = document.getElementById("navLinks");
+
+        menuToggle.addEventListener("click", function () {
+          menuToggle.classList.toggle("active");
+          navLinks.classList.toggle("active");
+        });
+
+        const links = navLinks.querySelectorAll("a");
+        links.forEach((link) => {
+          link.addEventListener("click", function () {
+            menuToggle.classList.remove("active");
+            navLinks.classList.remove("active");
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
