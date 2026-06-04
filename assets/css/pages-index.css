@@ -370,7 +370,7 @@ details[open] summary::after {
 .sns-list strong {
   color: var(--main-navy);
   display: inline-block;
-  width: 90px;
+  width: 110px;
 }
 
 /* フッター */

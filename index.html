@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>なかよしさいくる</title>
     <link rel="stylesheet" href="assets/css/pages-index.css" />
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/js/all.min.js"
+    ></script>
     <script>
       // モーダル開閉用
       function openModal(modalId) {
@@ -18,6 +22,7 @@
     </script>
 
     <script src="assets/js/menu.js"></script>
+    <script src="assets/js/note-updates.js"></script>
   </head>
   <body>
     <!-- ヘッダーエリア -->
@@ -52,7 +57,9 @@
           <p class="hero-lead">
             スポーツバイクでゆるくポタリング<br />時間を忘れて旅を楽しむインカレサークル
           </p>
-          <a href="#contact" class="btn">入会はこちら</a>
+          <a href="#contact" class="btn"
+            ><i class="fa-regular fa-circle-right"></i> 入会はこちら</a
+          >
         </div>
       </div>
     </section>
@@ -61,25 +68,7 @@
       <div class="container">
         <div class="notice-box">
           <h2 class="notice-title">お知らせ</h2>
-          <ul class="notice-list">
-            <li class="notice-item">
-              <span class="notice-date">2026.06.03</span>
-              <span class="notice-text">ネット版記事ページを新設中です</span>
-            </li>
-            <li class="notice-item">
-              <span class="notice-date">2026.06.03</span>
-              <a
-                href="assets/pdfs/kaihou/26_05.pdf"
-                target="_blank"
-                class="news-link"
-                >会報をアップロードしました</a
-              >
-            </li>
-            <li class="notice-item">
-              <span class="notice-date">2026.06.03</span>
-              <span class="notice-text">サイトを新しくしました</span>
-            </li>
-          </ul>
+          <ul class="notice-list" id="noticeList"></ul>
         </div>
       </div>
     </section>
@@ -91,7 +80,9 @@
           <p>
             1973年創設の「なかよしさいくる」は、東京大学を中心とするインカレ自転車旅サークルです。月1回の日帰りサイクリングや長期休暇の遠方合宿に加え、キャンプやレース等を行う自由な個人ラン、月1回の定例会など幅広く活動しています。大学1年からOBまでのメンバーが、各自のスタイルで自転車を楽しんでいます。
           </p>
-          <a href="kaihou.html" class="btn">詳細はこちらから</a>
+          <a href="kaihou.html" class="btn"
+            ><i class="fa-regular fa-circle-right"></i> 詳細はこちらから</a
+          >
         </div>
         <div class="activity-image">
           <img src="assets/images/集合写真.jpg" alt="活動の様子" />
@@ -108,21 +99,21 @@
             <h3>ロードバイク</h3>
             <p>ロードバイクってどんな乗り物？<br />魅力を紹介</p>
             <button class="btn" onclick="openModal('modal-road')">
-              詳細はこちら
+              <i class="fa-regular fa-circle-right"></i> 詳細はこちら
             </button>
           </div>
           <div class="bicycle-card">
             <h3>輪行</h3>
             <p>自転車を解体して持ち運ぶ<br />どんなところでも行けちゃう</p>
             <button class="btn" onclick="openModal('modal-rinko')">
-              詳細はこちら
+              <i class="fa-regular fa-circle-right"></i> 詳細はこちら
             </button>
           </div>
           <div class="bicycle-card">
             <h3>安全走行</h3>
             <p>安全に走るために心がけていること</p>
             <button class="btn" onclick="openModal('modal-safety')">
-              詳細はこちら
+              <i class="fa-regular fa-circle-right"></i> 詳細はこちら
             </button>
           </div>
         </div>
@@ -188,7 +179,9 @@
             なかよしさいくる活動の記録。発行している会報のWEB版です。過去3年間の記事をPDF形式で配布しております。
           </p>
         </div>
-        <a href="kaihou.html" class="btn">会報はこちらから</a>
+        <a href="kaihou.html" class="btn"
+          ><i class="fa-regular fa-circle-right"></i> 会報はこちらから</a
+        >
       </div>
     </section>
 
@@ -261,13 +254,23 @@
         </div>
         <ul class="sns-list">
           <li>
-            <strong>Twitter:</strong>
+            <strong><i class="fa-brands fa-x-twitter"></i> Twitter:</strong>
             <a href="https://x.com/nakayoshicycle" target="_blank"
               >@nakayoshicycle</a
             >
           </li>
-          <li><strong>Email:</strong> ncyc-info@nakayoshi.com</li>
-          <li><strong>Instagram:</strong> nakayoshi_cycle</li>
+          <li>
+            <strong><i class="fa-regular fa-envelope"></i> Email:</strong>
+            <a href="mailto:ncyc-info@nakayoshi.com">ncyc-info@nakayoshi.com</a>
+          </li>
+          <li>
+            <strong><i class="fa-brands fa-instagram"></i> Instagram:</strong>
+            <a
+              href="https://www.instagram.com/teamnc_utokyo/?hl=ja"
+              target="_blank"
+              >nakayoshi_cycle</a
+            >
+          </li>
         </ul>
       </div>
     </section>
