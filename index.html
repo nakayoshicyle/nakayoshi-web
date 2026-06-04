@@ -5,6 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>なかよしさいくる</title>
     <link rel="stylesheet" href="assets/css/pages-index.css" />
+    <script>
+      // モーダル開閉用
+      function openModal(modalId) {
+        const modal = document.getElementById(modalId);
+        modal.style.display = "flex";
+      }
+      function closeModal(modalId) {
+        const modal = document.getElementById(modalId);
+        modal.style.display = "none";
+      }
+    </script>
+
+    <script src="assets/js/menu.js"></script>
   </head>
   <body>
     <!-- ヘッダーエリア -->
@@ -21,7 +34,8 @@
 
         <!-- ナビゲーションリンク -->
         <nav class="nav-links" id="navLinks">
-          <a href="index.html#notice">ホーム</a>
+          <a href="index.html">ホーム</a>
+          <a href="index.html#notice">おしらせ</a>
           <a href="index.html#activity">活動内容</a>
           <a href="index.html#bicycles">自転車について</a>
           <a href="pages/kaihou.html">会報</a>
@@ -54,7 +68,10 @@
             </li>
             <li class="notice-item">
               <span class="notice-date">2026.06.03</span>
-              <a href="26_05.pdf" target="_blank" class="news-link"
+              <a
+                href="assets/pdfs/kaihou/26_05.pdf"
+                target="_blank"
+                class="news-link"
                 >会報をアップロードしました</a
               >
             </li>
@@ -77,7 +94,7 @@
           <a href="kaihou.html" class="btn">詳細はこちらから</a>
         </div>
         <div class="activity-image">
-          <img src="../assets/images/集合写真.jpg" alt="活動の様子" />
+          <img src="assets/images/集合写真.jpg" alt="活動の様子" />
         </div>
       </div>
     </section>
@@ -117,7 +134,7 @@
               「ママチャリと何が違うの？」と聞かれますが、乗り心地が全然違います。タイヤが細く、ブレーキやハンドルも独特な形をしています。最初は慣れないかもしれませんが、慣れると驚くほど軽やかに走ります。新歓や普段の定期サイクリングなどでは自転車の貸し出しも行っているので、一度騙されたと思って体験しにきてください。初めての方も大歓迎です。
             </p>
             <img
-              src="../assets/images/ロードバイク.jpg"
+              src="assets/images/ロードバイク.jpg"
               alt="ロードバイク"
               class="modal-img"
             />
@@ -134,7 +151,7 @@
               自転車の車輪を外して専用の袋に入れ、持ち運べる状態にすることを輪行と言います。電車やバス、飛行機などの公共交通機関に乗せるために旅の幅がぐんと広がります。なかよしさいくるでは基本的に輪行して集合場所に集まって、現地で輪行解除して走れる状態にします。
             </p>
             <img
-              src="../assets/images/輪行加工済み.jpg"
+              src="assets/images/輪行加工済み.jpg"
               alt="ロードバイク"
               class="modal-img"
             />
@@ -177,8 +194,8 @@
 
     <section class="photos">
       <div class="container photos-grid">
-        <img src="../assets/images/10899.jpg" alt="サークル写真1" />
-        <img src="../assets/images/伊豆大島後ろ姿.jpg" alt="サークル写真2" />
+        <img src="assets/images/10899.jpg" alt="サークル写真1" />
+        <img src="assets/images/伊豆大島後ろ姿.jpg" alt="サークル写真2" />
       </div>
     </section>
 
@@ -189,7 +206,7 @@
           <p>
             よくある質問をまとめました。個別で質問を受け付けているので、各新歓SNSにてお問い合わせください。
           </p>
-          <img src="../assets/images/10899.jpg" alt="Q&Aイメージ" />
+          <img src="assets/images/10899.jpg" alt="Q&Aイメージ" />
         </div>
         <div class="qa-right">
           <div class="qa-list">
@@ -243,7 +260,12 @@
           </p>
         </div>
         <ul class="sns-list">
-          <li><strong>Twitter:</strong> @nakayoshicycle</li>
+          <li>
+            <strong>Twitter:</strong>
+            <a href="https://x.com/nakayoshicycle" target="_blank"
+              >@nakayoshicycle</a
+            >
+          </li>
           <li><strong>Email:</strong> ncyc-info@nakayoshi.com</li>
           <li><strong>Instagram:</strong> nakayoshi_cycle</li>
         </ul>
@@ -253,38 +275,5 @@
     <footer>
       <p>© なかよしさいくる All Rights Reserved.</p>
     </footer>
-
-    <script>
-      // モーダル開閉用
-      function openModal(modalId) {
-        const modal = document.getElementById(modalId);
-        modal.style.display = "flex";
-      }
-      function closeModal(modalId) {
-        const modal = document.getElementById(modalId);
-        modal.style.display = "none";
-      }
-    </script>
-
-    <!-- ハンバーガーメニュー開閉用のJavaScript -->
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const menuToggle = document.getElementById("menuToggle");
-        const navLinks = document.getElementById("navLinks");
-
-        menuToggle.addEventListener("click", function () {
-          menuToggle.classList.toggle("active");
-          navLinks.classList.toggle("active");
-        });
-
-        const links = navLinks.querySelectorAll("a");
-        links.forEach((link) => {
-          link.addEventListener("click", function () {
-            menuToggle.classList.remove("active");
-            navLinks.classList.remove("active");
-          });
-        });
-      });
-    </script>
   </body>
 </html>

@@ -4,6 +4,19 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>なかよしさいくる</title>
+    <script>
+      // モーダル開閉用
+      function openModal(modalId) {
+        const modal = document.getElementById(modalId);
+        modal.style.display = "flex";
+      }
+      function closeModal(modalId) {
+        const modal = document.getElementById(modalId);
+        modal.style.display = "none";
+      }
+    </script>
+    <script src="../assets/js/menu.js"></script>
+    <script src="../assets/js/note-updates.js"></script>
     <link rel="stylesheet" href="../assets/css/pages-index.css" />
   </head>
   <body>
@@ -21,7 +34,8 @@
 
         <!-- ナビゲーションリンク -->
         <nav class="nav-links" id="navLinks">
-          <a href="index.html#notice">ホーム</a>
+          <a href="index.html">ホーム</a>
+          <a href="index.html#notice">おしらせ</a>
           <a href="index.html#activity">活動内容</a>
           <a href="index.html#bicycles">自転車について</a>
           <a href="kaihou.html">会報</a>
@@ -47,19 +61,15 @@
       <div class="container">
         <div class="notice-box">
           <h2 class="notice-title">お知らせ</h2>
-          <ul class="notice-list">
+          <ul id="noticeList" class="notice-list">
             <li class="notice-item">
-              <span class="notice-date">2026.06.03</span>
-              <span class="notice-text">ネット版記事ページを新設中です</span>
-            </li>
-            <li class="notice-item">
-              <span class="notice-date">2026.06.03</span>
+              <span class="notice-date">2026.06.05</span>
               <a href="26_05.pdf" target="_blank" class="news-link"
                 >会報をアップロードしました</a
               >
             </li>
             <li class="notice-item">
-              <span class="notice-date">2026.06.03</span>
+              <span class="notice-date">2026.06.05</span>
               <span class="notice-text">サイトを新しくしました</span>
             </li>
           </ul>
@@ -176,11 +186,101 @@
     </section>
 
     <section class="photos">
-      <div class="container photos-grid">
-        <img src="../assets/images/10899.jpg" alt="サークル写真1" />
-        <img src="../assets/images/伊豆大島後ろ姿.jpg" alt="サークル写真2" />
+      <div class="container photo-carousel">
+        <div class="photo-track" id="photoTrack">
+          <div class="photo-card">
+            <img src="../assets/images/10899.jpg" alt="活動風景1" />
+          </div>
+          <div class="photo-card">
+            <img src="../assets/images/伊豆大島後ろ姿.jpg" alt="活動風景2" />
+          </div>
+          <div class="photo-card">
+            <img src="../assets/images/集合写真.jpg" alt="活動風景3" />
+          </div>
+          <div class="photo-card">
+            <img src="../assets/images/ロードバイク.jpg" alt="ロードバイク" />
+          </div>
+          <div class="photo-card">
+            <img src="../assets/images/輪行加工済み.jpg" alt="輪行準備" />
+          </div>
+        </div>
+
+        <div class="photo-controls">
+          <button class="photo-control-btn" onclick="movePhotoCarousel(-1)">
+            &#10094;
+          </button>
+          <button class="photo-control-btn" onclick="movePhotoCarousel(1)">
+            &#10095;
+          </button>
+        </div>
+
+        <div class="photo-indicators" id="photoIndicators"></div>
       </div>
     </section>
+
+    <script>
+      const photoTrack = document.getElementById("photoTrack");
+      const photoIndicators = document.getElementById("photoIndicators");
+      const photoCards = document.querySelectorAll(".photo-card");
+      let photoIndex = 0;
+      let visibleCount = refreshVisibleCount();
+
+      function getCardGap() {
+        return 20;
+      }
+
+      function renderPhotoIndicators() {
+        const pageCount = Math.max(1, photoCards.length - visibleCount + 1);
+        photoIndicators.innerHTML = "";
+        for (let i = 0; i < pageCount; i += 1) {
+          const dot = document.createElement("span");
+          dot.className = `photo-dot${i === photoIndex ? " active" : ""}`;
+          dot.addEventListener("click", () => setPhotoSlide(i));
+          photoIndicators.appendChild(dot);
+        }
+      }
+
+      function updatePhotoCarousel() {
+        const cardWidth = photoCards[0].offsetWidth + getCardGap();
+        const maxIndex = Math.max(0, photoCards.length - visibleCount);
+        photoIndex = Math.min(photoIndex, maxIndex);
+        photoTrack.style.transform = `translateX(-${photoIndex * cardWidth}px)`;
+        renderPhotoIndicators();
+      }
+
+      function movePhotoCarousel(direction) {
+        const maxIndex = Math.max(0, photoCards.length - visibleCount);
+        photoIndex = photoIndex + direction;
+        if (photoIndex < 0) photoIndex = maxIndex;
+        if (photoIndex > maxIndex) photoIndex = 0;
+        updatePhotoCarousel();
+      }
+
+      function setPhotoSlide(index) {
+        photoIndex = index;
+        updatePhotoCarousel();
+      }
+
+      function refreshVisibleCount() {
+        const width = window.innerWidth;
+        return width <= 620 ? 1 : width <= 900 ? 2 : 3;
+      }
+
+      window.addEventListener("resize", () => {
+        const newVisible = refreshVisibleCount();
+        if (newVisible !== visibleCount) {
+          visibleCount = newVisible;
+          photoIndex = Math.min(
+            photoIndex,
+            Math.max(0, photoCards.length - visibleCount),
+          );
+          updatePhotoCarousel();
+        }
+      });
+
+      setInterval(() => movePhotoCarousel(1), 5000);
+      updatePhotoCarousel();
+    </script>
 
     <section id="qa">
       <div class="container qa-split">
@@ -243,9 +343,17 @@
           </p>
         </div>
         <ul class="sns-list">
-          <li><strong>Twitter:</strong> @nakayoshicycle</li>
+          <li>
+            <strong>Twitter:</strong>
+            <a href="https://x.com/nakayoshicycle" target="_blank"
+              >@nakayoshicycle</a
+            >
+          </li>
           <li><strong>Email:</strong> ncyc-info@nakayoshi.com</li>
-          <li><strong>Instagram:</strong> nakayoshi_cycle</li>
+          <li><strong>Instagram:</strong> 
+            <a href="https://www.instagram.com/teamnc_utokyo/?hl=ja
+" target="_blank">nakayoshi_cycle</a
+          </li>
         </ul>
       </div>
     </section>
@@ -253,38 +361,5 @@
     <footer>
       <p>© なかよしさいくる All Rights Reserved.</p>
     </footer>
-
-    <script>
-      // モーダル開閉用
-      function openModal(modalId) {
-        const modal = document.getElementById(modalId);
-        modal.style.display = "flex";
-      }
-      function closeModal(modalId) {
-        const modal = document.getElementById(modalId);
-        modal.style.display = "none";
-      }
-    </script>
-
-    <!-- ハンバーガーメニュー開閉用のJavaScript -->
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const menuToggle = document.getElementById("menuToggle");
-        const navLinks = document.getElementById("navLinks");
-
-        menuToggle.addEventListener("click", function () {
-          menuToggle.classList.toggle("active");
-          navLinks.classList.toggle("active");
-        });
-
-        const links = navLinks.querySelectorAll("a");
-        links.forEach((link) => {
-          link.addEventListener("click", function () {
-            menuToggle.classList.remove("active");
-            navLinks.classList.remove("active");
-          });
-        });
-      });
-    </script>
   </body>
 </html>

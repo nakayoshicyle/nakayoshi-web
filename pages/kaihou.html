@@ -9,6 +9,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     />
+    <script src="../assets/js/menu.js"></script>
   </head>
   <body>
     <header>
@@ -22,7 +23,8 @@
         </button>
 
         <nav class="nav-links" id="navLinks">
-          <a href="index.html#notice">ホーム</a>
+          <a href="index.html">ホーム</a>
+          <a href="index.html#notice">おしらせ</a>
           <a href="index.html#activity">活動内容</a>
           <a href="index.html#bicycles">自転車について</a>
           <a href="kaihou.html">会報</a>
@@ -32,34 +34,32 @@
       </div>
     </header>
 
-    <div class="container main-content">
+    <section class="container main-content">
       <div class="page-header">
         <div>
           <h1 class="page-title">会報・記事</h1>
           <p class="page-description">
-            なかよしさいくる活動の記録。会報のWEB版です。過去3年間の記事をPDF形式で配布してます。軽く活動を知りたい方はネット版記事をご覧ください。
+            なかよしさいくる活動の記録。会報のWEB版です。過去3年間の記事をPDF形式で配布してます。軽く活動を知りたい方はnoteをご覧ください。
           </p>
         </div>
-        <a href="blog.html" class="btn">ネット版のみのブログはこちら</a>
+        <a href="https://note.com/team_nc" class="btn">noteはこちら</a>
       </div>
 
       <div class="content-card">
-        <h3 class="section-h3">ネット版記事</h3>
+        <h3 class="section-h3">最新のnote</h3>
         <ul class="article-list">
-          <li><a href="#">現在準備中です。しばらくお待ちください。</a></li>
-          <li><a href="#">現在準備中です。しばらくお待ちください。</a></li>
-        </ul>
+          <li><a href="https://note.com/team_nc/n/nf6fd5b1d79f8">テスト記事</a></li>
       </div>
 
-      <div class="content-card">
+      <section class="content-card">
         <h3 class="section-h3">スバルライン</h3>
         <ul class="article-list">
           <li><a href="subaru_katu.html">スバルライン必勝法</a></li>
           <li><a href="Gokan.html">スバルライン沿革</a></li>
         </ul>
-      </div>
+      </section>
 
-      <div class="content-card">
+      <section class="content-card">
         <h3 class="section-h3">特別冊子・轍</h3>
 
         <ul class="article-list">
@@ -89,9 +89,9 @@
             </div>
           </li>
         </ul>
-      </div>
+      </section>
 
-      <div class="archive-section">
+      <section class="archive-section">
         <h3>年度アーカイブ</h3>
         <div class="archive-list">
           <details>
@@ -114,43 +114,29 @@
             </ul>
           </details>
         </div>
-      </div>
+      </section>
 
-      <div class="contact-box">
-        <div style="padding: 20px 0">
-          <h3>お問い合せ</h3>
-          <p style="color: var(--text-muted); font-size: 0.95rem">
+      <section id="contact">
+      <div class="container contact-split">
+        <div>
+          <h2 class="section-title">お問い合わせ</h2>
+          <p>
             入会や各種お問い合わせについては<br />公式SNSのDMにてご連絡ください。
           </p>
         </div>
-        <ul class="sns-info">
-          <li><strong>Twitter:</strong> <a href="#">@nakayoshicycle</a></li>
-          <li><strong>Email:</strong> support@solus.com</li>
-          <li><strong>Instagram:</strong> teamnc_utokyo</li>
+        <ul class="sns-list">
+          <li><strong>Twitter:</strong> <a href="https://x.com/nakayoshicycle" target="_blank">@nakayoshicycle</a></li>
+          <li><strong>Email:</strong> ncyc-info@nakayoshi.com</li>
+          <li><strong>Instagram:</strong> 
+            <a href="https://www.instagram.com/teamnc_utokyo/?hl=ja
+" target="_blank">nakayoshi_cycle</a
+          </li>
         </ul>
       </div>
-    </div>
+    </section>
 
-    <div class="bottom-bar"></div>
-
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const menuToggle = document.getElementById("menuToggle");
-        const navLinks = document.getElementById("navLinks");
-
-        menuToggle.addEventListener("click", function () {
-          menuToggle.classList.toggle("active");
-          navLinks.classList.toggle("active");
-        });
-
-        const links = navLinks.querySelectorAll("a");
-        links.forEach((link) => {
-          link.addEventListener("click", function () {
-            menuToggle.classList.remove("active");
-            navLinks.classList.remove("active");
-          });
-        });
-      });
-    </script>
+    <footer>
+      <p>© なかよしさいくる All Rights Reserved.</p>
+    </footer>
   </body>
 </html>

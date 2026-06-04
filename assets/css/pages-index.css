@@ -57,7 +57,7 @@ body {
 
 /* 共通セクション余白 */
 section {
-  padding: 40px 0;
+  padding: 60px 0;
 }
 
 /* 共通見出しスタイル */
@@ -125,6 +125,18 @@ header {
   font-size: 1.6rem;
   font-weight: 800;
   text-decoration: none;
+}
+/* アンカー遷移時のズレを防ぐ（sticky header対策） */
+:root {
+  --header-offset: 80px; /* ヘッダーの高さに合わせて調整してください */
+}
+section[id] {
+  scroll-margin-top: var(--header-offset);
+}
+@media (max-width: 480px) {
+  :root {
+    --header-offset: 120px; /* モバイルでヘッダーが大きくなる場合 */
+  }
 }
 .nav-links {
   display: flex;
@@ -363,6 +375,15 @@ details[open] summary::after {
 
 /* フッター */
 footer {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding: 0;
   background-color: var(--main-navy);
   height: 60px;
   display: flex;
@@ -370,6 +391,9 @@ footer {
   justify-content: center;
   color: #ffffff;
   font-size: 0.8rem;
+}
+footer p {
+  margin: 0;
 }
 
 /* ポップアップ（モーダル）の基本設定 */
@@ -786,4 +810,98 @@ footer {
   color: var(--text-muted);
   margin-bottom: 18px;
   font-size: 0.98rem;
+}
+
+/* スライドショーのスタイル */
+.photo-carousel {
+  position: relative;
+  width: 100%;
+  margin: 40px auto;
+  overflow: hidden;
+}
+
+.photo-track {
+  display: flex;
+  gap: 20px;
+  transition: transform 0.5s ease;
+  will-change: transform;
+}
+
+.photo-card {
+  min-width: calc((100% / 3) - 13.33px);
+  flex: 0 0 calc((100% / 3) - 13.33px);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  background: #ffffff;
+}
+
+.photo-card img {
+  width: 100%;
+  display: block;
+  height: 240px;
+  object-fit: cover;
+}
+
+.photo-controls {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%);
+  padding: 0 16px;
+  pointer-events: none;
+}
+
+.photo-control-btn {
+  background: rgba(14, 53, 82, 0.7);
+  border: none;
+  color: #ffffff;
+  font-size: 1.4rem;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  cursor: pointer;
+  pointer-events: all;
+  transition: background-color 0.3s;
+}
+
+.photo-control-btn:hover {
+  background: rgba(14, 53, 82, 0.9);
+}
+
+.photo-indicators {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.photo-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(14, 53, 82, 0.25);
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.photo-dot.active {
+  background: rgba(14, 53, 82, 0.9);
+}
+
+@media (max-width: 900px) {
+  .photo-card {
+    min-width: calc((100% / 2) - 10px);
+    flex: 0 0 calc((100% / 2) - 10px);
+  }
+}
+
+@media (max-width: 620px) {
+  .photo-card {
+    min-width: 100%;
+    flex: 0 0 100%;
+  }
 }

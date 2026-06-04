@@ -7,6 +7,7 @@
       後関杯富士スバルラインタイムトライアル 沿革 - なかよしさいくる
     </title>
     <link rel="stylesheet" href="../assets/css/pages-index.css" />
+    <script src="../assets/js/menu.js"></script>
   </head>
   <body>
     <!-- ヘッダーエリア -->
@@ -24,7 +25,8 @@
 
         <!-- ナビゲーションリンク -->
         <nav class="nav-links" id="navLinks">
-          <a href="index.html#notice">ホーム</a>
+          <a href="index.html">ホーム</a>
+          <a href="index.html#notice">おしらせ</a>
           <a href="index.html#activity">活動内容</a>
           <a href="index.html#bicycles">自転車について</a>
           <a href="kaihou.html">会報</a>
@@ -166,7 +168,12 @@
             </p>
           </div>
           <ul class="sns-list">
-            <li><strong>Twitter:</strong> @nakayoshicycle</li>
+            <li>
+              <strong>Twitter:</strong>
+              <a href="https://x.com/nakayoshicycle" target="_blank"
+                >@nakayoshicycle</a
+              >
+            </li>
             <li><strong>Email:</strong> ncyc-info@nakayoshi.com</li>
             <li><strong>Instagram:</strong> nakayoshi_cycle</li>
           </ul>
@@ -177,27 +184,5 @@
     <footer>
       <p>© なかよしさいくる All Rights Reserved.</p>
     </footer>
-    <!-- ハンバーガーメニュー開閉用のJavaScript -->
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const menuToggle = document.getElementById("menuToggle");
-        const navLinks = document.getElementById("navLinks");
-
-        // ボタンをクリックした時の開閉処理
-        menuToggle.addEventListener("click", function () {
-          menuToggle.classList.toggle("active");
-          navLinks.classList.toggle("active");
-        });
-
-        // メニュー内のリンクをクリックしたら自動でメニューを閉じる（ページ内リンク対策）
-        const links = navLinks.querySelectorAll("a");
-        links.forEach((link) => {
-          link.addEventListener("click", function () {
-            menuToggle.classList.remove("active");
-            navLinks.classList.remove("active");
-          });
-        });
-      });
-    </script>
   </body>
 </html>
